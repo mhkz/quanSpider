@@ -20,6 +20,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 web.map(app);
 
+//禁止缓存
+app.use(function(ctx, next) {
+  ctx.set('Cache-Control', 'no-cache, no-store, must-revalidate'); // HTTP 1.1.
+  ctx.set('Pragma', 'no-cache'); // HTTP 1.0.
+  ctx.set('Expires', '0'); // Proxies.
+  return next();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

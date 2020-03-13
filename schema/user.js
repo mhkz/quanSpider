@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 
 exports.define = function (sqlite) {
 	if (!sqlite.models) {

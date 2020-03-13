@@ -1,0 +1,17 @@
+node_modules
+logs/*
+.idea
+npm-debug
+*.log
+*.db
+presenterTool
+package-lock.json
+public/package-lock.json
+.node-version
+shopDetail.json
+.package
+.package/*
+package
+package/*
+.node_modules
+.node_module/*

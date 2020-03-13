@@ -1,3 +1,29 @@
+
+const Sequelize = require("sequelize");
+
+
+const sequelize = new Sequelize('iquanku_com', 'iquanku_com', 'guofeng2020', {
+    host: '103.42.29.140',
+    port: 3306,
+    dialect: 'mysql',
+    dialectOptions: {
+        decimalNumbers: true,
+        supportBigNumbers: true
+    },
+    pool: {
+        max: 5,
+        min: 0,
+        idle: 10000
+    },
+    timezone: '+08:00',
+    define: {
+        underscored: true,
+        underscoredAll: true
+    }
+});
+
+exports.Op = Sequelize.Op;
+
 export let WpActivation = sequelize.import(join(__dirname, './wp.activation'));
 export let WpBook = sequelize.import(join(__dirname, './wp.book'));
 export let WpCommentmeta = sequelize.import(join(__dirname, './wp.commentmeta'));

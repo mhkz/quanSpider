@@ -2,7 +2,15 @@ const {SuccessModel} = require("../lib/util")
 const {findOneByName} = require("../model/user")
 const {findOneByKey, updateKey} = require("../model/active")
 const {basePost, baseGet} = require("../lib/requestUtil");
-const {trim} = require("../lib/util/generalUtil");
+const {isEmpty} = require("lodash");
+const async = require("async");
+
+const PasswordHash = require('node-phpass').PasswordHash;
+const CRYPT_BLOWFISH = require('node-phpass').CRYPT_BLOWFISH;
+const CRYPT_EXT_DES = require('node-phpass').CRYPT_EXT_DES;
+
+
+
 exports.active = (req, res, next) => {
     let {
         key
@@ -49,15 +57,16 @@ exports.login = (req, res, next) =>{
         userName,
         password
     } = req.body;
-    if(!trim(userName) || !trim(password)) {
+    console.log("userName", userName)
+    console.log("password", password)
+    if(isEmpty(userName) || isEmpty(password)) {
         return res.json(new SuccessModel({code: "E1000", msg: "账号或密码不能为空"}, null))
     }
 
     basePost("/login", {username: userName, password: password}, function (err, result) {
-        console.log("result", err,result)
-        if (err) {
-            return res.json(new SuccessModel({code: "E1000", msg: "账号或秘密不正确"}, null))
-        }
-        return res.json(new SuccessModel({code: "E1000", msg: "账号或秘密不正确"}, result))
+        console.log("result", result)
     })
+
+
+
 }

@@ -1,5 +1,5 @@
 const {SuccessModel} = require("../lib/util")
-
+const {findOneByName} = require("../model/user")
 
 exports.active = (req, res, next) => {
     let key = req.query.key;
@@ -17,5 +17,7 @@ exports.active = (req, res, next) => {
 
 exports.login = (req, res, next) =>{
     console.log("------")
-    return res.json(new SuccessModel('', "登陆成功"))
+    findOneByName({name: "岁月如歌"}, (err, result) => {
+        res.json(new SuccessModel(err, result))
+    })
 }

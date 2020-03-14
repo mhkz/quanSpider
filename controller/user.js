@@ -1,6 +1,6 @@
 const {SuccessModel} = require("../lib/util")
 const {findOneByName} = require("../model/user")
-const {findOneByKey, updateKey} = require("../model/active");
+const {findOneByKey, updateKey} = require("../model/active")
 const {basePost, baseGet} = require("../lib/requestUtil");
 exports.active = (req, res, next) => {
     let {
@@ -48,7 +48,10 @@ exports.login = (req, res, next) =>{
         userName,
         password
     } = req.body;
-    console.log(userName, password)
+    if(!trim(userName) || !trim(password)) {
+        return res.json(new SuccessModel({code: "E1000", msg: "账号或密码不能为空"}, null))
+    }
+
     basePost("/login", {username: userName, password: password}, function (err, result) {
         console.log("result", err,result)
         if (err) {

@@ -2,6 +2,7 @@ const {SuccessModel} = require("../lib/util")
 const {findOneByName} = require("../model/user")
 const {findOneByKey, updateKey} = require("../model/active")
 const {basePost, baseGet} = require("../lib/requestUtil");
+const {trim} = require("../lib/util/generalUtil");
 exports.active = (req, res, next) => {
     let {
         key

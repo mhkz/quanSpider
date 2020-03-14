@@ -1,6 +1,7 @@
 const {SuccessModel} = require("../lib/util")
 const {findOneByName} = require("../model/user")
-const {findOneByKey, updateKey} = require("../model/active")
+const {findOneByKey, updateKey} = require("../model/active");
+const {isEmpty} = require("lodash");
 exports.active = (req, res, next) => {
     let {
         key
@@ -47,7 +48,7 @@ exports.login = (req, res, next) =>{
         username,
         password
     } = req.body;
-    if (!trim(username) || !trim(password)) {
+    if (isEmpty(username) || isEmpty(password)) {
         return res.json(new SuccessModel({code: "E1000", msg: "账号或密码不能为空"}, ))
     }
     findOneByName({userLogin: username}, (err, result) => {

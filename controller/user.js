@@ -47,10 +47,18 @@ exports.login = (req, res, next) =>{
         username,
         password
     } = req.body;
-    if (!username || !password) {
+    if (!trim(username) || !trim(password)) {
         return res.json(new SuccessModel({code: "E1000", msg: "账号或密码不能为空"}, ))
     }
     findOneByName({userLogin: username}, (err, result) => {
+        if(err) {
+            return res.json(new SuccessModel({code: "E1000", msg: err},  null))
+        }
+
+        if(!result) {
+            return res.json(new SuccessModel({code: "E1000", msg: "账号或密码不存在，请注册"},  null)) 
+        }
+
         let userPass = result.userPass;
         if (password == userPass) {
             return res.json(new SuccessModel({code: "E0", msg: "登录成功"}, {username }))

@@ -2,12 +2,20 @@ const {SuccessModel} = require("../lib/util")
 const {findOneByName} = require("../model/user")
 const {findOneByKey, updateKey} = require("../model/active");
 const {isEmpty} = require("lodash");
+
+const PasswordHash = require('node-phpass').PasswordHash;
+const CRYPT_BLOWFISH = require('node-phpass').CRYPT_BLOWFISH;
+const CRYPT_EXT_DES = require('node-phpass').CRYPT_EXT_DES;
+
+
+const len = 8;
+const portable = true;
+const phpversion = 7;
+
 exports.active = (req, res, next) => {
     let {
         key
     } = req.params;
-    console.log(req.params)
-    // return res.json(new SuccessModel(null, "激活成功"))
     if (!key) {
         let status = {
             msg: "key格式不正确",
@@ -61,7 +69,11 @@ exports.login = (req, res, next) =>{
         }
 
         let userPass = result.userPass;
-        if (password == userPass) {
+        const hasher = new PasswordHash(len, portable, phpversion);
+        const valid = hasher.CheckPassword(password, userPass);
+
+
+        if (valid) {
             return res.json(new SuccessModel({code: "E0", msg: "登录成功"}, {username }))
         } else {
             return res.json(new SuccessModel({code: "E1000", msg: "账号或秘密不正确"}, ))

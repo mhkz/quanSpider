@@ -44,13 +44,13 @@ exports.active = (req, res, next) => {
 
 exports.login = (req, res, next) =>{
     let {
-        userName,
+        username,
         password
     } = req.body;
-    if (!userName || !password) {
+    if (!username || !password) {
         return res.json(new SuccessModel({code: "E1000", msg: "账号或密码不能为空"}, ))
     }
-    findOneByName({userLogin: userName}, (err, result) => {
+    findOneByName({userLogin: username}, (err, result) => {
         let userPass = result.userPass;
         if (password == userPass) {
             return res.json(new SuccessModel({code: "E0", msg: "登录成功"}, {username }))

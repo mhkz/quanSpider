@@ -1,6 +1,7 @@
 const {SuccessModel} = require("../lib/util")
 const {findOneByName} = require("../model/user")
-const {findOneByKey, updateKey} = require("../model/active")
+const {findOneByKey, updateKey} = require("../model/active");
+const {basePost, baseGet} = require("../lib/requestUtil");
 exports.active = (req, res, next) => {
     let {
         key
@@ -44,16 +45,15 @@ exports.active = (req, res, next) => {
 
 exports.login = (req, res, next) =>{
     let {
-        username,
+        userName,
         password
     } = req.body;
-    findOneByName({userLogin: username}, (err, result) => {
-        let userPass = result.userPass;
-        console.log("pass", userPass)
-        if (password == userPass) {
-            return res.json(new SuccessModel({code: "E0", msg: "登录成功"}, {username }))
-        } else {
-            return res.json(new SuccessModel({code: "E1000", msg: "账号或秘密不正确"}, ))
+    console.log(userName, password)
+    basePost("/login", {username: userName, password: password}, function (err, result) {
+        console.log("result", err,result)
+        if (err) {
+            return res.json(new SuccessModel({code: "E1000", msg: "账号或秘密不正确"}, null))
         }
+        return res.json(new SuccessModel({code: "E1000", msg: "账号或秘密不正确"}, result))
     })
 }

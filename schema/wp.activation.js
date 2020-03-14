@@ -31,6 +31,22 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: false,
             defaultValue: null,
             field: "status"
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            autoIncrement: false,
+            primaryKey: false,
+            defaultValue: null,
+            field: "created_at"
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            autoIncrement: false,
+            primaryKey: false,
+            defaultValue: null,
+            field: "created_at"
         }
     }, {
         tableName: 'wp_activation',

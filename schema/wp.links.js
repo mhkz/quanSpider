@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             autoIncrement: false,
             primaryKey: false,
-            defaultValue: Y,
+            defaultValue: 1,
             field: "link_visible"
         },
         linkOwner: {
@@ -77,7 +77,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             autoIncrement: false,
             primaryKey: false,
-            defaultValue: 0000-00-00 00:00:00,
+            defaultValue: "0000-00-00 00:00:00",
             field: "link_updated"
         },
         linkRel: {

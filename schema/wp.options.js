@@ -1,39 +1,39 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('WpCommentmeta', {
-        metaId: {
+    return sequelize.define('WpOptions', {
+        optionId: {
             type: DataTypes.BIGINT,
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             defaultValue: null,
-            field: "meta_id"
+            field: "option_id"
         },
-        commentId: {
-            type: DataTypes.BIGINT,
+        optionName: {
+            type: DataTypes.STRING(191),
             allowNull: false,
             autoIncrement: false,
             primaryKey: false,
-            defaultValue: 0,
-            field: "comment_id"
-        },
-        metaKey: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-            autoIncrement: false,
-            primaryKey: false,
             defaultValue: null,
-            field: "meta_key"
+            field: "option_name"
         },
-        metaValue: {
+        optionValue: {
             type: DataTypes.TEXT,
-            allowNull: true,
+            allowNull: false,
             autoIncrement: false,
             primaryKey: false,
             defaultValue: null,
-            field: "meta_value"
+            field: "option_value"
+        },
+        autoload: {
+            type: DataTypes.STRING(20),
+            allowNull: false,
+            autoIncrement: false,
+            primaryKey: false,
+            defaultValue: "yes",
+            field: "autoload"
         }
     }, {
-        tableName: 'wp_commentmeta',
+        tableName: 'wp_options',
         timestamps: false
     });
 };

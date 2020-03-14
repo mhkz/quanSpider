@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             autoIncrement: false,
             primaryKey: false,
-            defaultValue: 0000-00-00 00:00:00,
+            defaultValue: "0000-00-00 00:00:00",
             field: "comment_date"
         },
         commentDateGmt: {
@@ -61,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             autoIncrement: false,
             primaryKey: false,
-            defaultValue: 0000-00-00 00:00:00,
+            defaultValue: "0000-00-00 00:00:00",
             field: "comment_date_gmt"
         },
         commentContent: {

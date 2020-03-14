@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 var logger = require('morgan');
-
+var cors = require("cors");
 var web = require('./routes/index');
 
 var app = express();
@@ -19,16 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); //here
+app.use(cors());
 
 web.map(app);
 
-//禁止缓存
-app.use(function(ctx, next) {
-  ctx.set('Cache-Control', 'no-cache, no-store, must-revalidate'); // HTTP 1.1.
-  ctx.set('Pragma', 'no-cache'); // HTTP 1.0.
-  ctx.set('Expires', '0'); // Proxies.
-  return next();
-});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,7 +39,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: err.message,
+    error: err
+  });
 });
 
 module.exports = app;

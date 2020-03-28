@@ -64,9 +64,10 @@ exports.login = (req, res, next) =>{
     }
 
     basePost("/login", {username: userName, password: password}, function (err, result) {
-        console.log("result", result)
+        res.json({
+            status: 'ok',
+            type: "account",
+            currentAuthority: 'admin',
+        })
     })
-
-
-
 }

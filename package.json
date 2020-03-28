@@ -5,7 +5,7 @@
   "main": "start-electron.js",
   "scripts": {
     "start": "nodemon ./bin/www",
-    "develop": " nodemon node ./bin/www",
+    "dev": " nodemon node ./bin/www",
     "init-dev": "cd service/sqlite &&  cross-env NODE_ENV=dev node init.js  && cd ../../.."
   },
   "dependencies": {

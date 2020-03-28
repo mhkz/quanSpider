@@ -4,7 +4,6 @@ const config = require('../config/index');
 
 const POS_CONFIG = config.sqlite.pos;
 
-console.log("=====", path.resolve(__dirname) + "/" + POS_CONFIG.database)
 const POS_CLIENT = new Sequelize(POS_CONFIG.database, POS_CONFIG.user, POS_CONFIG.password, {
     host: path.resolve() + "/" + POS_CONFIG.database,
     port: POS_CONFIG.port,

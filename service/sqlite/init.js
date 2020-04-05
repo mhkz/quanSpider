@@ -1,7 +1,7 @@
 const async = require('async');
 let NODE_ENV = process.env.NODE_ENV;
 const initData = require('./initData');
-const sqlite = require('../sqlite/index').client;
+const sqlite = require('../../schema/sqlite').client;
 var timeBegin = 0;
 var timeEnd = null;
 if (NODE_ENV == 'dev') {

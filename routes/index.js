@@ -1,5 +1,6 @@
-const user = require("../controller/user");
+// 路由控制中心
+const {spiderRoute} = require("../modules/spider/router")
+
 exports.map = function (app) {
-  app.get('/book/v1/active/:key', user.active);
-  app.post('/book/v1/login', user.login);
+  spiderRoute(app)
 }

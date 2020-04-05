@@ -4,7 +4,7 @@
  * @desc
  */
 const async = require('async');
-const sqlite = require('../sqlite/index').client;
+const sqlite = require('../../schema/sqlite').client;
 var timeBegin = new Date().getTime();
 var timeEnd = null;
 var syncDataUtil = module.exports;

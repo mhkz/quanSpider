@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const path = require('path');
-const config = require('../config/index');
+const config = require('../../service/config');
 
 const POS_CONFIG = config.sqlite.pos;
 
@@ -22,11 +22,12 @@ const POS_CLIENT = new Sequelize(POS_CONFIG.database, POS_CONFIG.user, POS_CONFI
     }
 });
 
-const user = require('../../schema/user');
+const user = require('./user');
+const spider = require('./spider');
 
 
 user.define(POS_CLIENT);
-
+spider.define(POS_CLIENT);
 
 exports.client = POS_CLIENT;
 exports.Sequelize = POS_CLIENT;
